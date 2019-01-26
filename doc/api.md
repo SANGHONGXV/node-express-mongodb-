@@ -17,6 +17,6 @@ author 作者
 
 get /data/ 获取所有
 get   /data/:id   通过id获取
-post     /data/update/:id   修改
+post     /data/edit/:id   修改
 delete      /data/del/:id  删除
 
