@@ -53,20 +53,20 @@ router.get("/:id", passport.authenticate("jwt", { session: false }), (req, res) 
         .catch(err => res.status(403).json(err))
 })
 
-// $route POST api/data/update
+// $route POST api/data/edit
 // @desc  修改
 // @access Privata
-router.post("/update/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
-    const newData = new Data({
-        type: req.body.type,
-        title: req.body.title,
-        content: req.body.content,
-        author: req.body.author,
-        date: req.body.date
-    })
-    Data.findByIdAndUpdate(
+router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
+    const newData = {}
+    if(req.body.type) newData.type = req.body.type;
+    if(req.body.title) newData.title =  req.body.title;
+    if(req.body.content) newData.content = req.body.content;
+    if(req.body.author) newData.author = req.body.author;
+    newData.date = req.body.date;
+    Data.findOneAndUpdate(
         {_id: req.params.id},
-        { $set: newData },
+        {$set: newData},
+        {new: true}
     ).then(data => res.json(data))
 })
 
