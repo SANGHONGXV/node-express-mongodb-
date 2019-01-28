@@ -15,6 +15,9 @@ const DataSchema = new Schema({
     author:{
         type:String 
     },
+    pdfURL:{
+        type:String
+    },
     date:{
         type:Date,
         default:Date.now()
