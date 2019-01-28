@@ -18,6 +18,7 @@ router.post("/add", passport.authenticate("jwt", { session: false }), (req, res)
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,
+        pdfURL: req.body.pdfURL,
         date: req.body.date
     })
     newData.save()
@@ -62,7 +63,7 @@ router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req,
     if(req.body.title) newData.title =  req.body.title;
     if(req.body.content) newData.content = req.body.content;
     if(req.body.author) newData.author = req.body.author;
-    newData.date = req.body.date;
+    if(req.body.pdfURL) newData.pdfURL = req.body.pdfURL;
     Data.findOneAndUpdate(
         {_id: req.params.id},
         {$set: newData},
