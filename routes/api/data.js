@@ -28,7 +28,8 @@ router.post("/add", passport.authenticate("jwt", { session: false }), (req, res)
 // $route GET api/data
 // @desc  获取所有
 // @access Privata
-router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
+// passport.authenticate("jwt", { session: false }),
+router.get("/", (req, res) => {
     Data.find()
         .then(data => {
             if (!data) {
