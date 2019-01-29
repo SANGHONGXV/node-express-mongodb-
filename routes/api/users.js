@@ -50,6 +50,21 @@ router.post("/register", (req, res) => {
         })
 })
 
+// $route GET api/users
+// @desc  获取所有
+// @access Privata
+// passport.authenticate("jwt", { session: false }),
+router.get("/", (req, res) => {
+    User.find()
+        .then(user => {
+            if (!user) {
+                return res.status(404).json("没有任何内容");
+            }
+            res.json(user);
+        })
+        .catch(err => res.status(403).json(err))
+})
+
 // $route POST api/users/login
 // @desc  返回token jwt passpord
 // @access public
@@ -61,7 +76,7 @@ router.post("/login", (req, res) => {
     User.findOne({ email })
         .then(user => {
             if (!user) {
-                return res.status(404).json("用户不存在");
+                return res.status(403).json("用户不存在");
             }
             //密码匹配
             bcrypt.compare(password, user.password)

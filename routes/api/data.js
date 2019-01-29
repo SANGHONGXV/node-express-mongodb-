@@ -68,7 +68,8 @@ router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req,
     Data.findOneAndUpdate(
         {_id: req.params.id},
         {$set: newData},
-        {new: true}
+        {new: true},
+        {versionKey: false}
     ).then(data => res.json(data))
 })
 

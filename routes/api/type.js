@@ -7,7 +7,7 @@ const Type = require('../../models/Type');
 // @desc  创建新的
 // @access Privata
 router.post("/add", passport.authenticate("jwt", { session: false }), (req, res) => {
-    const newData = new Data({
+    const newData = new Type({
         name: req.body.name,
         date: req.body.date
     })
@@ -15,47 +15,47 @@ router.post("/add", passport.authenticate("jwt", { session: false }), (req, res)
         .then(type => res.json(type))
         .catch(err => console.log(err))
 })
-// $route GET api/data
+// $route GET api/type
 // @desc  获取所有
 // @access Privata
 // passport.authenticate("jwt", { session: false }),
 router.get("/", (req, res) => {
-    Data.find()
-        .then(data => {
-            if (!data) {
-                return res.status(404).json("没有任何内容");
+    Type.find()
+        .then(type => {
+            if (!type) {
+                return res.status(404).json("还没有数据哦");
             }
-            res.json(data);
+            res.json(type);
         })
         .catch(err => res.status(403).json(err))
 })
 
-// $route GET api/data/:id
+// $route GET api/type/:id
 // @desc  获取单个
 // @access Privata
 router.get("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
     console.log(req)
-    Data.findOne({ _id: req.params.id })
-        .then(data => {
-            if (!data) {
-                return res.status(404).json("没有任何内容");
+    Type.findOne({ _id: req.params.id })
+        .then(type => {
+            if (!type) {
+                return res.status(404).json("还没有数据哦");
             }
-            res.json(data);
+            res.json(type);
         })
         .catch(err => res.status(403).json(err))
 })
 
-// $route POST api/data/edit
+// $route POST api/type/edit
 // @desc  修改
 // @access Privata
 router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
     const newData = {}
-    if(req.body.type) newData.name = req.body.name;
-    Data.findOneAndUpdate(
+    if(req.body.name) newData.name = req.body.name;
+    Type.findOneAndUpdate(
         {_id: req.params.id},
         {$set: newData},
         {new: true}
-    ).then(data => res.json(data))
+    ).then(type => res.json(type))
 })
 
 
