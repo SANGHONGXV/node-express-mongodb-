@@ -4,9 +4,10 @@ const bodyParser = require("body-parser");
 const passport = require("passport")
 const app = express();
 
-// 引入users.js
+
 const users = require("./routes/api/users");
-const data = require("./routes/api/data")
+const data = require("./routes/api/data");
+const type = require("./routes/api/type");
 
 // DB config
 const db = require("./config/index").mongoUrl;
@@ -32,6 +33,7 @@ require("./config/passport")(passport);
 // 使用routes
 app.use("/api/users",users);
 app.use("/api/data",data);
+app.use("/api/type",type);
 
 
 const port = process.env.POST || 5000;
