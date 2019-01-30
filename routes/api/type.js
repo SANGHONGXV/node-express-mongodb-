@@ -63,8 +63,8 @@ router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req,
 // @desc  删除
 // @access Privata
 router.delete("/del/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Data.findOneAndRemove({_id: req.params.id}).then(data =>{
-        data.save().then(data => res.json(data))
+    Type.findOneAndRemove({_id: req.params.id}).then(type =>{
+        type.save().then(type => res.json(type))
     }).catch(err => res.status(404).json(err))
 })
 

@@ -120,5 +120,13 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
     })
 })
 
+// $route delete api/users/del/:id
+// @desc  删除
+// @access Privata
+router.delete("/del/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
+    User.findOneAndRemove({_id: req.params.id}).then(user =>{
+        user.save().then(user => res.json(user))
+    }).catch(err => res.status(404).json(err))
+})
 
 module.exports = router;
