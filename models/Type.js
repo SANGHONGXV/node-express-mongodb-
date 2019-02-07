@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const TypeSchema = new Schema({
+    // 类型名
     name:{
         type:String
     },
