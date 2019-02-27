@@ -41,10 +41,12 @@ router.get("/", (req, res) => {
         .catch(err => res.status(403).json(err))
 })
 
+
 // $route GET api/data/:id
 // @desc  获取单个
 // @access Privata
-router.get("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
+// passport.authenticate("jwt", { session: false }),
+router.get("/:id",  (req, res) => {
     console.log(req)
     Data.findOne({ _id: req.params.id })
         .then(data => {
