@@ -63,7 +63,6 @@ router.get("/:id",  (req, res) => {
 router.get("/title/:title",  (req, res) => {
     Data.find({ title:{$regex:req.params.title} })
         .then(data => {
-            console.log(data)
             if (!data) {
                 return res.status(404).json("没有任何内容");
             }
