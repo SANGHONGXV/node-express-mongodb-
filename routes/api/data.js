@@ -47,7 +47,6 @@ router.get("/", (req, res) => {
 // @access Privata
 // passport.authenticate("jwt", { session: false }),
 router.get("/:id",  (req, res) => {
-    console.log(req)
     Data.findOne({ _id: req.params.id })
         .then(data => {
             if (!data) {
@@ -57,6 +56,24 @@ router.get("/:id",  (req, res) => {
         })
         .catch(err => res.status(403).json(err))
 })
+
+// $route GET api/data/:title
+// @desc 模糊查询
+// @access Privata
+router.get("/title/:title",  (req, res) => {
+    Data.find({ title:{$regex:req.params.title} })
+        .then(data => {
+            console.log(data)
+            if (!data) {
+                return res.status(404).json("没有任何内容");
+            }
+            res.json(data);
+        })
+        .catch(err => res.status(403).json(err))
+})
+
+
+
 
 // $route GET api/data/pagelist
 // @desc  分页获取
