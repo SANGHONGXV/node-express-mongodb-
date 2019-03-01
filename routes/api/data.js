@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const multiparty = require("multiparty");
 const Data = require('../../models/Data');
 // $route GET api/data/test
 // @desc  返回的请求的json数据
@@ -9,6 +10,17 @@ router.get("/test", (req, res) => {
     res.json({ msg: "data works" })
 })
 
+// $route put api/data/file
+
+router.put('/file',(req, res) => {
+         var form = new multiparty.Form();
+    　　//这里可以设置图片上传的路径，默认为当前用户下的temp文件夹
+         form.uploadDir = util.getRootDir() + "/static/img";
+         form.parse(req, (err, fields, files)  => {
+            console.log(fields)
+            // var pictureUrl 
+         });
+     });
 // $route POST api/data/add
 // @desc  创建新的
 // @access Privata

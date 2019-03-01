@@ -11,6 +11,10 @@ const DataSchema = new Schema({
     title:{
         type:String
     },
+    // 封面url
+    pictureUrl:{
+        type:String
+    },
     // 内容
     content:{
         type:String
