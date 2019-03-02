@@ -27,6 +27,10 @@ const DataSchema = new Schema({
     authorId:{
         type:String
     },
+    // 图片URL
+    imgURL:{
+        type:String
+    },
     // pdfURL
     pdfURL:{
         type:String

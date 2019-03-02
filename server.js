@@ -12,6 +12,7 @@ const type = require("./routes/api/type");
 // DB config
 const db = require("./config/index").mongoUrl;
 
+app.use('/upload',express.static('upload'));
 // 使用body-parser中间件
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
