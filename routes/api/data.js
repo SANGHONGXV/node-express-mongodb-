@@ -30,10 +30,15 @@ router.post('/file', upload.single('file'),(req, res, next) => {
     res.json(req.file.path)
 });
 
-router.delete('/file/del/:name',(req, res) => {
+// $route post api/file/del/:name
+// @desc 根据文件名删除文件
+router.post('/file/del/:name', passport.authenticate("jwt", { session: false }),(req, res) => {
     // console.log(req.params.name);
     // 删除文件
-    fs.unlink('upload/' + req.params.name);
+    fs.unlink('upload/' + req.params.name,(err)=>{
+        if(err) return res.status(0).json(err);
+        res.json('成功')
+    })
 })
 
 // $route POST api/data/add
@@ -117,7 +122,8 @@ router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req,
     if (req.body.type) newData.type = req.body.type;
     if (req.body.title) newData.title = req.body.title;
     if (req.body.content) newData.content = req.body.content;
-    if (req.body.author) newData.author = req.body.author;
+    if (req.body.content) newData.content = req.body.content;
+    if (req.body.imgRUL) newData.imgURL = req.body.imgRUL;
     if (req.body.authorId) newData.authorId = req.body.authorId;
     if (req.body.pdfURL) newData.pdfURL = req.body.pdfURL;
     Data.findOneAndUpdate(
