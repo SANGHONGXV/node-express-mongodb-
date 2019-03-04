@@ -31,3 +31,4 @@ node+express+mongodb
 - [x] 登录
 - [x] 返回token
 - [x] data数据 增删改查
+- [x] 上传图片，删除
