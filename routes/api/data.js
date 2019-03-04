@@ -5,7 +5,7 @@ const fs = require("fs");
 const multer = require('multer');
 const Data = require('../../models/Data');
 
-
+// 配置上传图
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'upload')
