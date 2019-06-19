@@ -20,6 +20,7 @@ const upload = multer({ storage: storage });
 // $route GET api/data/test
 // @desc  返回的请求的json数据
 // @access public
+
 router.get("/test", (req, res) => {
     res.json({ msg: "data works" })
 })
@@ -40,6 +41,17 @@ router.post('/file/del/:name', passport.authenticate("jwt", { session: false }),
         res.json('成功')
     })
 })
+
+/**
+ * @api {POST} /api/data/add  添加数据
+ * @apiName 添加数据
+ * @apiGroup data
+ *
+ * @apiParam {String} type 分类
+ * @apiParam {String} title  标题
+ * @apiSuccess {String} firstname Firstname of the User.
+ */
+
 
 // $route POST api/data/add
 // @desc  创建新的
@@ -107,9 +119,24 @@ router.get("/title/:title", (req, res) => {
 
 
 
-// $route GET api/data/pagelist
+// $route GET api/data/getInfoByPage
 // @desc  分页获取
 // @access Privata
+// pageSize 每页数据条数
+// page
+
+router.post('/getInfoByPage',(req,res) => {
+    let pageSize = req.query.pageSize || 5 //设置默认值
+    let page = req.query.page || 1
+    Data.find().limit(Number(pageSize)).skip(Number((page-1)*pageSize))
+        .then((data) => {
+            if (!data) {
+                return res.status(404).json("没有任何内容");
+            }
+            res.json({pageSize:pageSize,page:page,list:data});
+        })
+        .catch(err => res.status(403).json(err))
+}) 
 
 
 
