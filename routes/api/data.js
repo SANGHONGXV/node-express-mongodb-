@@ -17,9 +17,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
-// $route GET api/data/test
-// @desc  返回的请求的json数据
-// @access public
+
 
 router.get("/test", (req, res) => {
     res.json({ msg: "data works" })
@@ -43,19 +41,14 @@ router.post('/file/del/:name', passport.authenticate("jwt", { session: false }),
 })
 
 /**
- * @api {POST} /api/data/add  添加数据
+ * @api {post} /api/data/add 文章添加
  * @apiName 添加数据
  * @apiGroup data
- *
  * @apiParam {String} type 分类
  * @apiParam {String} title  标题
- * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {json} result
  */
 
-
-// $route POST api/data/add
-// @desc  创建新的
-// @access Privata
 router.post("/add", passport.authenticate("jwt", { session: false }), (req, res) => {
     const newData = new Data({
         type: req.body.type,
@@ -71,10 +64,14 @@ router.post("/add", passport.authenticate("jwt", { session: false }), (req, res)
         .then(data => res.json(data))
         .catch(err => console.log(err))
 })
-// $route GET api/data
-// @desc  获取所有
-// @access Privata
-// passport.authenticate("jwt", { session: false }),
+
+/**
+ * @api {get} /api/data 获取所有
+ * @apiName 获取数据
+ * @apiGroup data
+ * @apiSuccess {json} result
+ */
+
 router.get("/", (req, res) => {
     Data.find()
         .then(data => {
@@ -146,7 +143,7 @@ router.post('/getInfoByPage',(req,res) => {
 // @access Privata
 router.post("/edit/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
     const newData = {}
-    if (req.body.type) newData.type = req.body.type;
+    if (req.body.type) newData.type = req.body.type; 
     if (req.body.title) newData.title = req.body.title;
     if (req.body.content) newData.content = req.body.content;
     if (req.body.content) newData.content = req.body.content;

@@ -32,3 +32,4 @@ node+express+mongodb
 - [x] 返回token
 - [x] data数据 增删改查
 - [x] 上传图片，删除
+- [x] 配置docapi
