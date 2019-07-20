@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 // Create Schema
 const DataSchema = new Schema({
     // 文章类型
-    type:{
-        type:String
+    typeid:{
+        type: Schema.Types.ObjectId,
+        ref:'type'
     },
     // 文章题目
     title:{
@@ -25,7 +26,8 @@ const DataSchema = new Schema({
     },
     // 发布者id
     authorId:{
-        type:String
+        type: Schema.Types.ObjectId,
+        ref:'users'
     },
     // 图片URL
     imgURL:{

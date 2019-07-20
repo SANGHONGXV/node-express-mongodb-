@@ -6,7 +6,8 @@ const Type = require('../../models/Type');
 // $route POST api/type/add
 // @desc  创建新的
 // @access Privata
-router.post("/add", passport.authenticate("jwt", { session: false }), (req, res) => {
+// passport.authenticate("jwt", { session: false }),
+router.post("/add", (req, res) => {
     const newData = new Type({
         name: req.body.name,
         date: req.body.date

@@ -48,10 +48,10 @@ router.post('/file/del/:name', passport.authenticate("jwt", { session: false }),
  * @apiParam {String} title  标题
  * @apiSuccess {json} result
  */
-
-router.post("/add", passport.authenticate("jwt", { session: false }), (req, res) => {
+// passport.authenticate("jwt", { session: false }),
+router.post("/add",  (req, res) => {
     const newData = new Data({
-        type: req.body.type,
+        typeid: req.body.typeid,
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,
@@ -73,7 +73,7 @@ router.post("/add", passport.authenticate("jwt", { session: false }), (req, res)
  */
 
 router.get("/", (req, res) => {
-    Data.find()
+    Data.find().populate('typeid')
         .then(data => {
             if (!data) {
                 return res.status(404).json("没有任何内容");
