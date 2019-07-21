@@ -42,7 +42,6 @@ router.post('/file/del/:name', passport.authenticate("jwt", { session: false }),
 
 /**
  * @api {post} /api/data/add 文章添加
- * @apiName 添加数据
  * @apiGroup data
  * @apiParam {String} type 分类
  * @apiParam {String} title  标题
@@ -67,7 +66,6 @@ router.post("/add",  (req, res) => {
 
 /**
  * @api {get} /api/data 获取所有
- * @apiName 获取数据
  * @apiGroup data
  * @apiSuccess {json} result
  */
@@ -84,9 +82,11 @@ router.get("/", (req, res) => {
 })
 
 
-// $route GET api/data/:id
-// @desc  获取单个
-// @access Privata
+/**
+ * @api {get} /api/data/:id 获取单个
+ * @apiGroup data
+ * @apiSuccess {json} result
+ */
 // passport.authenticate("jwt", { session: false }),
 router.get("/:id", (req, res) => {
     Data.findOne({ _id: req.params.id })
