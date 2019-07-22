@@ -1,7 +1,7 @@
 {
-    "name": "example",
+    "name": "系统接口文档",
     "version": "1.0.0",
-    "description": "apiDoc basic example",
-    "title": "Custom apiDoc browser title",
+    "description": "系统接口文档",
+    "title": "系统接口文档",
     "url" : "http://127.0.0.1:5000"
 }

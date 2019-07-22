@@ -18,18 +18,18 @@
 生产环境执行
 > npm run start
 
-1.5 浏览器访问 http://127.0.0.1:5000
+1.5 生成api接口文档
+>  npm run apidoc
 
-1.6 api使用介绍 ./doc/api.md
+1.6 打开api接口文档 
+> 浏览器访问 http://127.0.0.1:5000/apidoc
+
 
 ## 2.技术栈
 node+express+mongodb 
 
 ## 3.实现
-- [x] 注册
-- [x] 密码  -->明文加密（bcryptjs）
-- [x] 登录
-- [x] 返回token
-- [x] data数据 增删改查
+
+- [x] 数据 增删改查
 - [x] 上传图片，删除
 - [x] 配置docapi

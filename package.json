@@ -23,7 +23,7 @@
     "passport-jwt": "^4.0.0"
   },
   "apidoc": {
-    "title": "接口文档", 
-    "url": "http://localhost:5000" 
+    "title": "系统接口文档",
+    "url" : "http://127.0.0.1:5000"
   }
 }

@@ -4,10 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport")
 const app = express();
 
-const users = require("./routes/api/users");
-const data = require("./routes/api/data");
-const type = require("./routes/api/type");
-
+const applte = require("./routes/api/applte");
 // DB config
 const db = require("./config/index").mongoUrl;
 // 上传
@@ -26,16 +23,14 @@ app.use(passport.initialize());
 // 配置passport
 require("./config/passport")(passport);
 
-
-// app.get("/",(req,res) => {
-//     res.send("Hello world!");
-// })
+// 配置apidoc
+app.use(express.static(path.join(__dirname, 'public')))
+app.get('/apidoc',function(req,res){
+    res.sendfile("./public/apidoc/index.html")
+})
 
 // 使用routes
-app.use("/api/users",users);
-app.use("/api/data",data);
-app.use("/api/type",type);
-
+app.use("/api/applte",applte);
 
 const port = process.env.POST || 5000;
 
