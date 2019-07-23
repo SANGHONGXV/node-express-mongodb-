@@ -1,5 +1,5 @@
 # nodeadmin后端接口
-
+### 此为镜像仓库-原仓库(Gitee):https://gitee.com/xiangmukuangjia/nodeadmin
 ## 1.部署
 
 1.1 安装node环境
